@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-ink text-ash-50 font-body antialiased;
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(242, 169, 59, 0.06), transparent 45%),
+      radial-gradient(circle at 85% 100%, rgba(61, 214, 140, 0.05), transparent 40%);
+    background-attachment: fixed;
+  }
+  ::selection {
+    background: rgba(242, 169, 59, 0.35);
+  }
+  *:focus-visible {
+    outline: 2px solid #F2A93B;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .form-input {
+    @apply w-full rounded-lg border border-ink-border bg-ink-raised px-3 py-2.5 text-sm text-ash-50 placeholder:text-ash-600 focus:border-amber/50 transition-colors;
+  }
+  .form-input-sm {
+    @apply w-full rounded-md border border-ink-border bg-ink-raised px-2.5 py-2 text-xs text-ash-50 placeholder:text-ash-600 focus:border-amber/50 transition-colors;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: #27343F;
+    border-radius: 8px;
+  }
+  .tape-edge {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+}
+
+/* Reduced motion respect */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Inspector leader-line connector, drawn as a small pseudo dashed line via border on a positioned span */
+.leader-dot {
+  position: relative;
+}
+.leader-dot::before {
+  content: '';
+  position: absolute;
+  inset: -3px -6px;
+  border: 1.5px dashed currentColor;
+  border-radius: 6px;
+  opacity: 0.85;
+  pointer-events: none;
+}
